@@ -18,10 +18,8 @@ header {
 header .btn {
     height: 46px;
     width: 46px;
-    cursor: pointer;
     border-radius: 4px;
     background-color: var(--lightest);
-    border: none;
 }
 
 header .btn:hover {

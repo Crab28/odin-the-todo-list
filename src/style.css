@@ -4,12 +4,15 @@
     --normal: #F28F3B;
     --light: #ffd5c2;
     --lightest: #ffebe1;
-    --plain: #eee;
+    --plain: #ffffff;
+}
+
+*, body {
+    font-family: 'Times New Roman', Times, Arial, serif;
 }
 
 body {
-    background-color: var(--plain);
-    font-family: 'Times New Roman', Times, Arial, serif;
+    background-color: #eee;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -19,9 +22,15 @@ h1 {
     font-size: 3rem;
 }
 
+h3 {
+    font-size: 1.6rem;
+}
+
 .btn {
-    border: 1px solid var(--alt);
+    border: none;
     outline: none;
+    cursor: pointer;
+    background-color: var(--plain);
 }
 
 .btn:active {
@@ -34,8 +43,11 @@ h1 {
 }
 
 aside {
+    background-color: var(--plain);
     height: 100%;
     width: 20%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 main {
