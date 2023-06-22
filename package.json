@@ -1,0 +1,25 @@
+{
+  "name": "odin-the-todo-list",
+  "version": "1.0.0",
+  "description": "Odin project: A simple todo list while trying to incorporate SOLID principles.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crab28/odin-the-todo-list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Crab28/odin-the-todo-list/issues"
+  },
+  "homepage": "https://github.com/Crab28/odin-the-todo-list#readme",
+  "devDependencies": {
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
