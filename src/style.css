@@ -1,3 +1,30 @@
+:root {
+    --alt: #588B8B;
+    --dark: #C8553D;
+    --normal: #F28F3B;
+    --light: #ffd5c2;
+    --lightest: #ffebe1;
+    --plain: #eee;
+}
+
+body {
+    background-color: var(--plain);
+    font-family: 'Times New Roman', Times, Arial, serif;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.btn {
+    border: 1px solid var(--alt);
+    outline: none;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
 .container {
     display: flex;
 }
