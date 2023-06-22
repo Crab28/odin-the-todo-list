@@ -4,4 +4,8 @@ import './components/header/header.css';
 
 import { createHeader } from './components/header/header';
 
-createHeader();
+function initializeMainContainers() {
+    createHeader();
+}
+
+initializeMainContainers();

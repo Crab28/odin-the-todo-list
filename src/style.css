@@ -10,6 +10,9 @@
 body {
     background-color: var(--plain);
     font-family: 'Times New Roman', Times, Arial, serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 h1 {
@@ -27,4 +30,15 @@ h1 {
 
 .container {
     display: flex;
+    height: 100%;
+}
+
+aside {
+    height: 100%;
+    width: 20%;
+}
+
+main {
+    height: 100%;
+    width: 80%;
 }
