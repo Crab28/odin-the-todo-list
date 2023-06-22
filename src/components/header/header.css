@@ -1,6 +1,6 @@
 
 header {
-    background-color: var(--light);
+    background-color: var(--lightest);
     padding: 16px 0;
     color: var(--darkest);
     border-bottom: 2px solid var(--dark);
@@ -20,12 +20,12 @@ header .btn {
     width: 46px;
     cursor: pointer;
     border-radius: 4px;
-    background-color: var(--light);
+    background-color: var(--lightest);
     border: none;
 }
 
 header .btn:hover {
-    background-color: var(--lightest);
+    background-color: var(--light);
 }
 
 header .btn .btn-icon {
@@ -58,7 +58,7 @@ header .btn .btn-icon {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--light);
+    background-color: var(--lightest);
     background-image: url('../../img/weather-sunny.svg'), url('../../img/weather-night.svg');
     background-position: left center, right center;
     background-repeat: no-repeat, no-repeat;
