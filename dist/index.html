@@ -10,7 +10,66 @@
     </header>
     <div class="container">
         <aside id="aside"></aside>
-        <main></main>
+        <main id="main">
+            <div class="main-content">
+                <div id="project-title">
+                    <h2>Default</h2>
+                    <hr>
+                </div>
+                <div class="task-header">
+                    <h4>Title</h4>
+                    <h4>Note</h4>
+                    <h4>Due</h4>
+                </div>
+                <ul class="task-list">
+                    <li class="task-container">
+                        <input type="checkbox" name="task-checkbox" class="task-checkbox">
+                        <div class="task-box">
+                            <div class="task-title">
+                                <h5>Task Title</h5>
+                            </div>
+                            <div class="task-note">
+                                <small>Task Note</small>
+                            </div>
+                            <div class="task-due">
+                                <time datetime="6-24-2023">6-24-2023</time>
+                            </div>
+                            <div class="task-buttons">
+                                <ul>
+                                    <li><button class="btn"><div class="btn-icon btn-view"></div></button></li>
+                                    <li><button class="btn"><div class="btn-icon btn-edit"></div></button></li>
+                                    <li><button class="btn"><div class="btn-icon btn-trash"></div></button></li>
+                                    <li><button class="btn"><div class="btn-icon btn-important"></div></button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="task-container">
+                        <input type="checkbox" name="task-checkbox" class="task-checkbox">
+                        <div class="task-box">
+                            <div class="task-title">
+                                <h5>Task Title</h5>
+                            </div>
+                            <div class="task-note">
+                                <small>Task Note</small>
+                            </div>
+                            <div class="task-due">
+                                <time datetime="6-24-2023">6-24-2023</time>
+                            </div>
+                            <div class="task-buttons">
+                                <ul>
+                                    <li><button class="btn"><div class="btn-icon btn-view"></div></button></li>
+                                    <li><button class="btn"><div class="btn-icon btn-edit"></div></button></li>
+                                    <li><button class="btn"><div class="btn-icon btn-trash"></div></button></li>
+                                    <li><button class="btn"><div class="btn-icon btn-important"></div></button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <button class="btn" id="add-task-btn">Add Task</button>
+            </div>
+        </main>
     </div>
     <script src="./main.js"></script>
 </body>
