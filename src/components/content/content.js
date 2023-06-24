@@ -47,7 +47,7 @@ function createTaskCreator() {
                 </div>
                 <div class="form-item">
                     <label for="duedate">Due Date</label>
-                    <input type="datetime" name="duedate" id="duedate">
+                    <input type="date" name="duedate" id="duedate">
                 </div>
                 <div class="form-item">
                     <label for="notes">Notes</label>
@@ -60,13 +60,35 @@ function createTaskCreator() {
             </fieldset>
             <hr>
             <div class="form-buttons">
-                <button type="submit" class="btn submit-btn">Create</button>
-                <button type="button" class="btn">Cancel</button>
+                <button type="submit" class="btn submit-btn" id="submit-btn">Create</button>
+                <button type="button" class="btn" id="cancel-btn">Cancel</button>
             </div>
         </form>
     </div>`
 
     container.appendChild(taskContainer);
+
+    const submitBtn = document.getElementById('submit-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+
+    cancelBtn.addEventListener('click', () => {
+        taskContainer.remove();
+    });
+
+    submitBtn.addEventListener('click', (event) => {
+       event.preventDefault();
+
+       const title = document.getElementById('title').value;
+       const description = document.getElementById('description').value;
+       const dueDate = document.getElementById('duedate').value;
+       const notes = document.getElementById('notes').value;
+       const important = document.getElementById('important').value;
+       
+       projects.createTask(title, description, notes, dueDate, important);
+
+       taskContainer.remove();
+    });
+    
 }
 
 function createDateElement(date) {
@@ -148,8 +170,8 @@ const projects = (() => {
         }
     ];
 
-    const createTask = (title, description, note, duedate, priority) => {
-        let task = new Task(title, description, note, duedate, priority);
+    const createTask = (title, description, notes, duedate, priority) => {
+        let task = new Task(title, description, notes, duedate, priority);
         let tasks = projects[currentProject].tasks;
 
         generateTaskContent(task);
