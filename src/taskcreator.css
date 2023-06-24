@@ -1,0 +1,95 @@
+#task-creation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#task-creation-box {
+    width: 400px;
+    background-color: var(--plain);
+    border-radius: 5px;
+    padding: 30px;
+}
+
+#task-creation-box form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#task-creation-box form hr {
+    width: 100%;
+}
+
+#task-creation-box form fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#task-creation-box form fieldset .form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+#task-creation-box form fieldset .form-item label {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+#task-creation-box form fieldset .form-item:last-child {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 50%;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+#task-creation-box form fieldset .form-item:not(:last-child) input {
+    padding: 5px 10px;
+    outline: none;
+}
+
+#task-creation-box form fieldset input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#task-creation-box form fieldset .form-item textarea {
+    outline: none;
+    padding: 6px 10px;
+}
+
+#task-creation-box form .form-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 5px;
+}
+
+#task-creation-box form .form-buttons .btn {
+    padding: 8px 30px;
+    background-color: var(--normal);
+    font-size: 0.9rem;
+    border-radius: 5px;
+    color: var(--plain);
+}
+
+#task-creation-box form .form-buttons .submit-btn {
+    background-color: var(--alt);
+    color: var(--plain);
+}
