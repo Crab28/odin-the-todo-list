@@ -15,6 +15,58 @@ function createContent() {
         </ul>
         <button class="btn" id="add-task-btn">Add Task</button>
     </div>`
+
+    createButtonListeners();
+}
+
+function createButtonListeners() {
+    const addTask = document.getElementById('add-task-btn');
+    addTask.addEventListener('click', () => {
+        createTaskCreator();
+    });
+}
+
+function createTaskCreator() {
+    const container = document.getElementById('container');
+    const taskContainer = document.createElement('div');
+
+    taskContainer.id = 'task-creation-container';
+    taskContainer.innerHTML = `
+    <div id="task-creation-box">
+        <form>
+            <fieldset>
+                <legend>New Task</legend>
+                <hr>
+                <div class="form-item">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div class="form-item">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="5"></textarea>
+                </div>
+                <div class="form-item">
+                    <label for="duedate">Due Date</label>
+                    <input type="datetime" name="duedate" id="duedate">
+                </div>
+                <div class="form-item">
+                    <label for="notes">Notes</label>
+                    <input type="text" name="notes" id="notes">
+                </div>
+                <div class="form-item">
+                    <label for="important">Important</label>
+                    <input type="checkbox" name="important" id="important">
+                </div>
+            </fieldset>
+            <hr>
+            <div class="form-buttons">
+                <button type="submit" class="btn submit-btn">Create</button>
+                <button type="button" class="btn">Cancel</button>
+            </div>
+        </form>
+    </div>`
+
+    container.appendChild(taskContainer);
 }
 
 function createDateElement(date) {
