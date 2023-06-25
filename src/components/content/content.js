@@ -70,13 +70,18 @@ function createProjectCreator() {
     const submitBtn = document.getElementById('submit-btn');
 
     submitBtn.addEventListener('click', (event) => {
-       event.preventDefault();
+        event.preventDefault();
 
-       const title = document.getElementById('title').value;
+        const titleEl = document.getElementById('title');
+
+        const title = titleEl.value;
        
-       projects.createProject(title);
-
-       projectContainer.remove();
+        if (titleEl.value === '') {
+            titleEl.placeholder = 'Please fill out this field!';
+        } else {
+            projects.createProject(title);
+            projectContainer.remove();
+        }
     });
 }
 
@@ -125,17 +130,23 @@ function createTaskCreator() {
     const submitBtn = document.getElementById('submit-btn');
 
     submitBtn.addEventListener('click', (event) => {
-       event.preventDefault();
+        event.preventDefault();
 
-       const title = document.getElementById('title').value;
-       const description = document.getElementById('description').value;
-       const dueDate = document.getElementById('duedate').value;
-       const notes = document.getElementById('notes').value;
-       const important = document.getElementById('important').value;
-       
-       projects.createTask(title, description, notes, dueDate, important);
+        const titleEl = document.getElementById('title');
 
-       taskContainer.remove();
+        const title = titleEl.value;
+        const description = document.getElementById('description').value;
+        const dueDate = document.getElementById('duedate').value;
+        const notes = document.getElementById('notes').value;
+        const important = document.getElementById('important').value;
+
+        if (title === '') {
+            titleEl.placeholder = 'Please fill out this field!';
+        } else {
+            projects.createTask(title, description, notes, dueDate, important);
+
+            taskContainer.remove();
+        }
     });
 }
 
