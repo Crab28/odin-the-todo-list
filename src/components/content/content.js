@@ -1,3 +1,5 @@
+const container = document.getElementById('container');
+
 function createContent() {
     const main = document.getElementById('main');
     main.innerHTML = `
@@ -16,21 +18,52 @@ function createContent() {
         <button class="btn" id="add-task-btn">Add Task</button>
     </div>`
 
-    createButtonListeners();
+    createAddTaskButtonListener();
 }
 
-function createButtonListeners() {
+function createAddTaskButtonListener() {
     const addTask = document.getElementById('add-task-btn');
     addTask.addEventListener('click', () => {
         createTaskCreator();
     });
 }
 
+function createProjectCreator() {
+    const projectContainer = document.createElement('div');
+
+    projectContainer.id = 'creation-container';
+    projectContainer.innerHTML = `
+        <div id="project-creation-box">
+            <form>
+                <label for="title">Project Name</label>
+                <input type="text" name="title" id="title">
+                <div class="form-buttons">
+                    <button type="submit" class="btn submit-btn" id="submit-btn">Create</button>
+                    <button type="button" class="btn" id="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>`
+
+    container.appendChild(projectContainer);
+
+    createFormCancelButtonListener(projectContainer);
+    const submitBtn = document.getElementById('submit-btn');
+
+    submitBtn.addEventListener('click', (event) => {
+       event.preventDefault();
+
+       const title = document.getElementById('title').value;
+       
+       projects.createProject(title);
+
+       projectContainer.remove();
+    });
+}
+
 function createTaskCreator() {
-    const container = document.getElementById('container');
     const taskContainer = document.createElement('div');
 
-    taskContainer.id = 'task-creation-container';
+    taskContainer.id = 'creation-container';
     taskContainer.innerHTML = `
     <div id="task-creation-box">
         <form>
@@ -68,12 +101,8 @@ function createTaskCreator() {
 
     container.appendChild(taskContainer);
 
+    createFormCancelButtonListener(taskContainer);
     const submitBtn = document.getElementById('submit-btn');
-    const cancelBtn = document.getElementById('cancel-btn');
-
-    cancelBtn.addEventListener('click', () => {
-        taskContainer.remove();
-    });
 
     submitBtn.addEventListener('click', (event) => {
        event.preventDefault();
@@ -88,7 +117,14 @@ function createTaskCreator() {
 
        taskContainer.remove();
     });
-    
+}
+
+function createFormCancelButtonListener(formContainer) {
+    const cancelBtn = document.getElementById('cancel-btn');
+
+    cancelBtn.addEventListener('click', () => {
+        formContainer.remove();
+    });
 }
 
 function createDateElement(date) {
@@ -178,8 +214,18 @@ const projects = (() => {
         tasks.push(task);
     }
 
-    return { createTask }
+    const createProject = (title) => {
+        console.log(projects.length);
+        projects.push({
+            id: projects.length,
+            title: title,
+            tasks: []
+        });
+        console.log(projects);
+    }
+
+    return { createTask, createProject }
 
 })();
 
-export { projects, createContent }
+export { projects, createContent, createProjectCreator }

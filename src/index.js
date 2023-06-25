@@ -4,6 +4,7 @@ import './components/header/header.css';
 import './components/side/side.css';
 import './components/content/content.css';
 import './taskcreator.css';
+import './projectcreator.css';
 
 import { createHeader } from './components/header/header';
 import { createAside } from './components/side/side';
