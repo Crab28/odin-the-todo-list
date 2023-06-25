@@ -14,10 +14,10 @@ function createAside() {
                 <li>Important</li>
             </ul>
         </div>
-        <div class="aside-block">
+        <div class="aside-block" id="project-aside-block">
             <h3>Projects</h3>
             <hr>
-            <ul class="aside-block-list">
+            <ul class="aside-block-list" id="project-list">
                 <li>Default</li>
             </ul>
             <button type="button" class="btn" id="project-btn">
@@ -38,4 +38,18 @@ function createAddProjectListener() {
     });
 }
 
-export { createAside }
+function refreshProjectList(projects) {
+    const projectList = document.getElementById('project-list');
+
+    projectList.innerHTML = '';
+    
+    projects.forEach(project => {
+        const listEl = document.createElement('li');
+
+        listEl.textContent = project.title;
+
+        projectList.appendChild(listEl);
+    });
+}
+
+export { createAside, refreshProjectList }

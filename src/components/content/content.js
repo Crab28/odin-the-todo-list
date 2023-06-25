@@ -1,3 +1,5 @@
+import { refreshProjectList } from "../side/side";
+
 const container = document.getElementById('container');
 
 function createContent() {
@@ -215,13 +217,13 @@ const projects = (() => {
     }
 
     const createProject = (title) => {
-        console.log(projects.length);
         projects.push({
             id: projects.length,
             title: title,
             tasks: []
         });
-        console.log(projects);
+
+        refreshProjectList(projects);
     }
 
     return { createTask, createProject }
