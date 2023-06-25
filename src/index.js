@@ -7,13 +7,16 @@ import './taskcreator.css';
 import './projectcreator.css';
 
 import { createHeader } from './components/header/header';
-import { createAside } from './components/side/side';
+import { createAside, addProjectListListeners } from './components/side/side';
 import { createContent, projects } from './components/content/content';
 
 function initializeMainContainers() {
     createHeader();
     createAside();
     createContent();
+
+    projects.loadProjects(); // Does nothing. No server.
+    addProjectListListeners();
 
     projects.createTask('title', 'description', 'notenote', '6-23-2024', true, false);
     projects.createTask('title2', 'description2', 'notenote', '6-23-2024', true, false);

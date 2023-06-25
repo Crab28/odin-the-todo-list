@@ -1,4 +1,4 @@
-import { createProjectCreator } from "../content/content";
+import { createProjectCreator, projects } from "../content/content";
 
 function createAside() {
     const aside = document.getElementById('aside');
@@ -18,7 +18,7 @@ function createAside() {
             <h3>Projects</h3>
             <hr>
             <ul class="aside-block-list" id="project-list">
-                <li>Default</li>
+                <li class="project-list-item">Default</li>
             </ul>
             <button type="button" class="btn" id="project-btn">
                 <div class="btn-icon"></div>
@@ -45,11 +45,24 @@ function refreshProjectList(projects) {
     
     projects.forEach(project => {
         const listEl = document.createElement('li');
+        listEl.classList.add('project-list-item');
 
         listEl.textContent = project.title;
 
         projectList.appendChild(listEl);
     });
+
+    addProjectListListeners();
 }
 
-export { createAside, refreshProjectList }
+function addProjectListListeners() {
+    const projectList = document.getElementsByClassName('project-list-item');
+    
+    for (let i = 0; i < projectList.length; i++) {
+        projectList[i].addEventListener('click', () => {
+            projects.setCurrentProject(projectList[i].textContent);
+        });
+    }
+}
+
+export { createAside, refreshProjectList, addProjectListListeners }

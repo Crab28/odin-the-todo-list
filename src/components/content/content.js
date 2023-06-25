@@ -2,6 +2,24 @@ import { refreshProjectList } from "../side/side";
 
 const container = document.getElementById('container');
 
+function refreshProject(project) {
+    const projectTitle = document.getElementById('project-title');
+    projectTitle.innerHTML = ``;
+    const titleEl = document.createElement('h2');
+    const hrEl = document.createElement('hr');
+    titleEl.textContent = project.title;
+
+    const taskList = document.getElementById('task-list');
+    taskList.innerHTML = ``;
+
+    project.tasks.forEach(task => {
+        generateTaskContent(task);
+    });
+
+    projectTitle.appendChild(titleEl);
+    projectTitle.appendChild(hrEl);
+}
+
 function createContent() {
     const main = document.getElementById('main');
     main.innerHTML = `
@@ -199,7 +217,6 @@ class Task {
 
 const projects = (() => {
 
-    let currentProject = 0;
     let projects = [
         {
             id: 0,
@@ -207,26 +224,49 @@ const projects = (() => {
             tasks: []
         }
     ];
+    let currentProjectId = projects[0].id;
 
     const createTask = (title, description, notes, duedate, priority) => {
         let task = new Task(title, description, notes, duedate, priority);
-        let tasks = projects[currentProject].tasks;
+        let tasks = getCurrentProject().tasks;
 
         generateTaskContent(task);
         tasks.push(task);
     }
 
+    const loadProjects = () => {
+        // Load Projects from Server
+        // projects = {}
+    }
+
+    const setCurrentProject = (projectName) => {
+        projects.forEach(project => {
+            if (project.title === projectName) {
+                currentProjectId = project.id;
+                refreshProject(project);
+            };
+        });
+    }
+
     const createProject = (title) => {
         projects.push({
-            id: projects.length,
+            id: projects[projects.length - 1].id + 1,
             title: title,
             tasks: []
         });
 
-        refreshProjectList(projects);
+        refreshProjectList(projects.slice());
     }
 
-    return { createTask, createProject }
+    const getCurrentProject = () => {
+        for (let i = 0; i < projects.length; i++) {
+            if (projects[i].id === currentProjectId) {
+                return projects[i];
+            }
+        }
+    }
+
+    return { createTask, createProject, loadProjects, setCurrentProject }
 
 })();
 
