@@ -57,7 +57,7 @@ header .btn .btn-icon {
     right: 0;
     bottom: 0;
     background-color: var(--lightest);
-    background-image: url('../../img/weather-sunny.svg'), url('../../img/weather-night.svg');
+    background-image: url('../../img/weather-night.svg'), url('../../img/weather-sunny.svg');
     background-position: left center, right center;
     background-repeat: no-repeat, no-repeat;
     background-size: 60% 60%, 60% 60%;
