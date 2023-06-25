@@ -106,3 +106,12 @@
 .task-buttons .btn-view {
     background-image: url('../../img/text-box-search-outline.svg');
 }
+
+body.darkmode .task-buttons .btn-icon {
+    filter: invert(99%) sepia(0%) saturate(2092%) hue-rotate(177deg) brightness(116%) contrast(100%);
+    opacity: 1;
+}
+
+body.darkmode #add-task-btn {
+    background-color: var(--normal);
+}

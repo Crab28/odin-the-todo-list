@@ -48,3 +48,17 @@
     width: 20px;
     margin-right: 4px;
 }
+
+body.darkmode #project-btn {
+    background-color: var(--plain);
+    color: #eee;
+}
+
+body.darkmode #project-btn .btn-icon {
+    filter: invert(99%) sepia(0%) saturate(2092%) hue-rotate(177deg) brightness(116%) contrast(100%);
+}
+
+.aside-block-list li:hover,
+.aside-block-list li:hover .btn {
+    background-color: var(--normal);
+}

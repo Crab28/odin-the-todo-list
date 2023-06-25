@@ -38,3 +38,8 @@
     background-color: var(--alt);
     color: var(--plain);
 }
+
+body.darkmode #project-creation-box form .form-buttons .btn {
+    color: #eee;
+    background-color: var(--normal);
+}

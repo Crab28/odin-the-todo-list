@@ -7,6 +7,15 @@
     --plain: #ffffff;
 }
 
+body.darkmode {
+    --dark: #333;
+    --normal: #444;
+    --light: #555;
+    --lightest: #666;
+    --plain: #222;
+    --alt: #333;
+}
+
 *, body {
     font-family: 'Times New Roman', Times, Arial, serif;
 }
@@ -59,6 +68,10 @@ aside {
     justify-content: flex-end;
 }
 
+body.darkmode aside {
+    color: #eee;
+}
+
 main {
     height: 100%;
     width: 80%;
@@ -67,4 +80,23 @@ main {
 
 .remove-content {
     display: none;
+}
+
+body.darkmode {
+    background-color: #555;
+    color: #eee;
+}
+
+body.darkmode .btn {
+    background-color: var(--light);
+    color: #eee;
+}
+
+body.darkmode label {
+    color: #eee;
+}
+
+body.darkmode input,
+body.darkmode textarea {
+    background-color: #ddd;
 }

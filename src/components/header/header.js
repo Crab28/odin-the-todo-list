@@ -7,12 +7,13 @@ function createHeader() {
         </button>
         <h1>The Big To-Do</h1>
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" id="slider-mode">
             <span class="slider round"></span>
         </label>
     </div>`
 
     addMenuListener();
+    addSliderListener();
 }
 
 function addMenuListener() {
@@ -21,6 +22,13 @@ function addMenuListener() {
     menuEl.addEventListener('click', () => {
         aside.classList.toggle('remove-content');
     });
+}
+
+function addSliderListener() {
+    const slider = document.getElementById('slider-mode');
+    slider.addEventListener('click', () => {
+        document.body.classList.toggle('darkmode');
+    })
 }
 
 export { createHeader }
