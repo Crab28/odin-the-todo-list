@@ -207,6 +207,9 @@ function generateTaskContent(task) {
     const taskTitle = taskContainer.querySelector('.task-title');
     const taskNote = taskContainer.querySelector('.task-note');
     const taskDue = taskContainer.querySelector('.task-due');
+    const taskComplete = taskContainer.querySelector('.task-checkbox');
+
+    taskComplete.checked = task.complete;
 
     taskTitle.appendChild(createTextElement('h5', '', task.title));
     taskNote.appendChild(createTextElement('small', '', task.note));
@@ -237,8 +240,8 @@ const projects = (() => {
     ];
     let currentProjectId = projects[0].id;
 
-    const createTask = (title, description, notes, duedate, priority) => {
-        let task = new Task(title, description, notes, duedate, priority);
+    const createTask = (title, description, notes, duedate, priority, complete) => {
+        let task = new Task(title, description, notes, duedate, priority, complete);
         let tasks = getCurrentProject().tasks;
 
         generateTaskContent(task);
