@@ -275,7 +275,7 @@ function createEditBox(task) {
     document.getElementById('title').value = task.title;
     document.getElementById('description').value = task.description;
     document.getElementById('duedate').value = task.duedate;
-    document.getElementById('notes').value = task.notes;
+    document.getElementById('notes').value = task.note;
     document.getElementById('important').value = task.important;
 
     const submitBtn = document.getElementById('submit-btn');
@@ -319,10 +319,10 @@ class Task {
         this.complete = complete;
     }
 
-    editTask(title, description, notes, duedate, priority, complete) {
+    editTask(title, description, note, duedate, priority, complete) {
         this.title = title;
         this.description = description;
-        this.note = notes;
+        this.note = note;
         this.duedate = duedate;
         this.priority = priority;
         this.complete = complete;
