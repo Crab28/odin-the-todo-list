@@ -1,0 +1,28 @@
+#description-box {
+    width: 400px;
+    background-color: var(--plain);
+    border-radius: 5px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#description-box hr {
+    width: 100%;
+}
+
+#description-box .btn {
+    padding: 8px 30px;
+    background-color: var(--alt);
+    font-size: 0.9rem;
+    border-radius: 5px;
+    color: var(--plain);
+    width: 100px;
+    align-self: center;
+}
+
+body.darkmode #description-box .btn {
+    color: #eee;
+    background-color: var(--normal);
+}

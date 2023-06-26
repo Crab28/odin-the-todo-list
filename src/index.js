@@ -5,6 +5,7 @@ import './components/side/side.css';
 import './components/content/content.css';
 import './taskcreator.css';
 import './projectcreator.css';
+import './description.css';
 
 import { createHeader } from './components/header/header';
 import { createAside, addProjectListListeners } from './components/side/side';

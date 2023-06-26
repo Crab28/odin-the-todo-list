@@ -195,7 +195,7 @@ function generateTaskContent(task) {
         <div class="task-due">
         </div>
         <div class="task-buttons">
-            <ul>
+            <ul class="task-buttons-list">
                 <li><button class="btn"><div class="btn-icon btn-view"></div></button></li>
                 <li><button class="btn"><div class="btn-icon btn-edit"></div></button></li>
                 <li><button class="btn"><div class="btn-icon btn-trash"></div></button></li>
@@ -210,12 +210,55 @@ function generateTaskContent(task) {
     const taskComplete = taskContainer.querySelector('.task-checkbox');
 
     taskComplete.checked = task.complete;
+    createTaskListeners(taskContainer, task);
 
     taskTitle.appendChild(createTextElement('h5', '', task.title));
     taskNote.appendChild(createTextElement('small', '', task.note));
     taskDue.appendChild(createDateElement(task.duedate));
 
     taskList.appendChild(taskContainer);
+}
+
+function createDescriptionBox(task) {
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.id = 'creation-container';
+
+    descriptionContainer.innerHTML = `
+    <div id="description-box">
+        <h4 id="item-title">Title</h4>
+        <hr>
+        <p id="item-description">Description</p>
+        <hr>
+        <time id="item-due">Due: </time>
+        <hr>
+        <p id="item-note">Note</p>
+        <hr>
+        <button class="btn" id="desc-back-btn">Back</button>
+    </div>`
+
+    container.appendChild(descriptionContainer);
+    
+    const titleEl = document.getElementById('item-title');
+    const descEl = document.getElementById('item-description');
+    const timeEl = document.getElementById('item-due');
+    const noteEl = document.getElementById('item-note');
+
+    titleEl.textContent = task.title;
+    descEl.textContent = task.description;
+    timeEl.textContent = 'Due: ' + task.duedate;
+    noteEl.textContent = task.note;
+
+    const backBtn = document.getElementById('desc-back-btn');
+    backBtn.addEventListener('click', () => {
+        descriptionContainer.remove();
+    });
+}
+
+function createTaskListeners(taskContainer, task) {
+    const buttonsArray = taskContainer.querySelectorAll('.task-buttons-list li');
+    buttonsArray[0].addEventListener('click', () => {
+        createDescriptionBox(task);
+    })
 }
 
 class Task {
