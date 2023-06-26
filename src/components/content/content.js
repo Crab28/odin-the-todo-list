@@ -88,6 +88,29 @@ function createProjectCreator() {
 function createTaskCreator() {
     const taskContainer = document.createElement('div');
 
+    createTaskCreatorElements(taskContainer);
+
+    createFormCancelButtonListener(taskContainer);
+    const submitBtn = document.getElementById('submit-btn');
+
+    submitBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const titleEl = document.getElementById('title');
+
+        const formData = getTaskFormData();
+
+        if (formData.title === '') {
+            titleEl.placeholder = 'Please fill out this field!';
+        } else {
+            projects.createTask(formData.title, formData.description, formData.notes, formData.dueDate, formData.important);
+
+            taskContainer.remove();
+        }
+    });
+}
+
+function createTaskCreatorElements(taskContainer) {
     taskContainer.id = 'creation-container';
     taskContainer.innerHTML = `
     <div id="task-creation-box">
@@ -125,29 +148,18 @@ function createTaskCreator() {
     </div>`
 
     container.appendChild(taskContainer);
+}
 
-    createFormCancelButtonListener(taskContainer);
-    const submitBtn = document.getElementById('submit-btn');
+function getTaskFormData() {
+    const formData = {
+        title: document.getElementById('title').value,
+        dersc: document.getElementById('description').value,
+        dueDate: document.getElementById('duedate').value,
+        notes: document.getElementById('notes').value,
+        important: document.getElementById('important').value,
+    }
 
-    submitBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        const titleEl = document.getElementById('title');
-
-        const title = titleEl.value;
-        const description = document.getElementById('description').value;
-        const dueDate = document.getElementById('duedate').value;
-        const notes = document.getElementById('notes').value;
-        const important = document.getElementById('important').value;
-
-        if (title === '') {
-            titleEl.placeholder = 'Please fill out this field!';
-        } else {
-            projects.createTask(title, description, notes, dueDate, important);
-
-            taskContainer.remove();
-        }
-    });
+    return formData;
 }
 
 function createFormCancelButtonListener(formContainer) {
@@ -254,11 +266,47 @@ function createDescriptionBox(task) {
     });
 }
 
+function createEditBox(task) {
+    const taskContainer = document.createElement('div');
+
+    createTaskCreatorElements(taskContainer);
+    createFormCancelButtonListener(taskContainer);
+
+    document.getElementById('title').value = task.title;
+    document.getElementById('description').value = task.description;
+    document.getElementById('duedate').value = task.duedate;
+    document.getElementById('notes').value = task.notes;
+    document.getElementById('important').value = task.important;
+
+    const submitBtn = document.getElementById('submit-btn');
+
+
+    submitBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const titleEl = document.getElementById('title');
+
+        const formData = getTaskFormData();
+
+        if (formData.title === '') {
+            titleEl.placeholder = 'Please fill out this field!';
+        } else {
+            projects.editTask(task, formData.title, formData.description, formData.notes, formData.dueDate, formData.important);
+
+            taskContainer.remove();
+        }
+    });
+}
+
 function createTaskListeners(taskContainer, task) {
     const buttonsArray = taskContainer.querySelectorAll('.task-buttons-list li');
     buttonsArray[0].addEventListener('click', () => {
         createDescriptionBox(task);
-    })
+    });
+
+    buttonsArray[1].addEventListener('click', () => {
+        createEditBox(task);
+    });
 }
 
 class Task {
@@ -266,7 +314,16 @@ class Task {
         this.title = title;
         this.description = description;
         this.note = note;
-        this. duedate = duedate;
+        this.duedate = duedate;
+        this.priority = priority;
+        this.complete = complete;
+    }
+
+    editTask(title, description, notes, duedate, priority, complete) {
+        this.title = title;
+        this.description = description;
+        this.note = notes;
+        this.duedate = duedate;
         this.priority = priority;
         this.complete = complete;
     }
@@ -323,7 +380,13 @@ const projects = (() => {
         }
     }
 
-    return { createTask, createProject, loadProjects, setCurrentProject }
+    const editTask = (task, title, description, notes, duedate, priority, complete) => {
+        task.editTask(title, description, notes, duedate, priority, complete);
+
+        refreshProject(projects[currentProjectId]);
+    }
+
+    return { createTask, createProject, loadProjects, setCurrentProject, editTask }
 
 })();
 
