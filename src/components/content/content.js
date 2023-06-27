@@ -310,13 +310,14 @@ function createTaskListeners(taskContainer, task) {
 }
 
 class Task {
-    constructor(title, description, note, duedate, priority, complete ) {
+    constructor(title, description, note, duedate, priority, complete, id) {
         this.title = title;
         this.description = description;
         this.note = note;
         this.duedate = duedate;
         this.priority = priority;
         this.complete = complete;
+        this.id = id;
     }
 
     editTask(title, description, note, duedate, priority, complete) {
@@ -341,11 +342,22 @@ const projects = (() => {
     let currentProjectId = projects[0].id;
 
     const createTask = (title, description, notes, duedate, priority, complete) => {
-        let task = new Task(title, description, notes, duedate, priority, complete);
+        const tasksLength = projects[currentProjectId].tasks.length;
+        let newId;
+        if (tasksLength !== 0) {
+            newId = projects[currentProjectId].tasks[tasksLength - 1].id + 1;
+        } else {
+            newId = 0;
+        }
+        let task = new Task(title, description, notes, duedate, priority, complete, newId);
         let tasks = getCurrentProject().tasks;
 
         generateTaskContent(task);
         tasks.push(task);
+    }
+
+    const deleteTask = (task) => {
+        console.log(task.id);
     }
 
     const loadProjects = () => {
@@ -380,8 +392,8 @@ const projects = (() => {
         }
     }
 
-    const editTask = (task, title, description, notes, duedate, priority, complete) => {
-        task.editTask(title, description, notes, duedate, priority, complete);
+    const editTask = (task, title, description, notes, duedate, priority, complete, id) => {
+        task.editTask(title, description, notes, duedate, priority, complete, id);
 
         refreshProject(projects[currentProjectId]);
     }
