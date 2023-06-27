@@ -307,6 +307,10 @@ function createTaskListeners(taskContainer, task) {
     buttonsArray[1].addEventListener('click', () => {
         createEditBox(task);
     });
+
+    buttonsArray[2].addEventListener('click', () => {
+        projects.deleteTask(task);
+    });
 }
 
 class Task {
@@ -356,8 +360,14 @@ const projects = (() => {
         tasks.push(task);
     }
 
-    const deleteTask = (task) => {
-        console.log(task.id);
+    const deleteTask = (currentTask) => {
+        projects[currentProjectId].tasks.forEach((task, index) => {
+            if (task.id === currentTask.id) {
+                projects[currentProjectId].tasks.splice(index, 1);
+            }
+        });
+
+        refreshProject(projects[currentProjectId]);
     }
 
     const loadProjects = () => {
@@ -398,7 +408,7 @@ const projects = (() => {
         refreshProject(projects[currentProjectId]);
     }
 
-    return { createTask, createProject, loadProjects, setCurrentProject, editTask }
+    return { createTask, createProject, loadProjects, setCurrentProject, editTask, deleteTask }
 
 })();
 
