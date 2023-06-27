@@ -115,3 +115,7 @@ body.darkmode .task-buttons .btn-icon {
 body.darkmode #add-task-btn {
     background-color: var(--normal);
 }
+
+.task-buttons .btn-important.isImportant {
+    filter: invert(27%) sepia(74%) saturate(2629%) hue-rotate(2deg) brightness(102%) contrast(112%);
+}

@@ -220,6 +220,7 @@ function generateTaskContent(task) {
     const taskNote = taskContainer.querySelector('.task-note');
     const taskDue = taskContainer.querySelector('.task-due');
     const taskComplete = taskContainer.querySelector('.task-checkbox');
+    const taskImportant = taskContainer.querySelector('.btn-important');
 
     taskComplete.checked = task.complete;
     createTaskListeners(taskContainer, task);
@@ -227,6 +228,10 @@ function generateTaskContent(task) {
     taskTitle.appendChild(createTextElement('h5', '', task.title));
     taskNote.appendChild(createTextElement('small', '', task.note));
     taskDue.appendChild(createDateElement(task.duedate));
+
+    if (task.important) {
+        taskImportant.classList.toggle('isImportant');
+    }
 
     taskList.appendChild(taskContainer);
 }
@@ -311,6 +316,12 @@ function createTaskListeners(taskContainer, task) {
     buttonsArray[2].addEventListener('click', () => {
         projects.deleteTask(task);
     });
+
+    buttonsArray[3].addEventListener('click', () => {
+        task.setImportant();
+
+        refreshProject(projects.getCurrentProject());
+    });
 }
 
 class Task {
@@ -331,6 +342,10 @@ class Task {
         this.duedate = duedate;
         this.priority = priority;
         this.complete = complete;
+    }
+
+    setImportant() {
+        this.important = !this.important;
     }
 }
 
@@ -408,7 +423,7 @@ const projects = (() => {
         refreshProject(projects[currentProjectId]);
     }
 
-    return { createTask, createProject, loadProjects, setCurrentProject, editTask, deleteTask }
+    return { createTask, createProject, loadProjects, setCurrentProject, editTask, deleteTask, getCurrentProject }
 
 })();
 
